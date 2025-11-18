@@ -35,6 +35,7 @@ export default function Header({ isScrolled }: HeaderProps) {
           className="hidden md:flex gap-8"
         >
           <NavLink href="#services">Services</NavLink>
+          <NavLink href="#instruments">Instruments</NavLink>
           <NavLink href="#about">About</NavLink>
           <NavLink href="#gallery">Gallery</NavLink>
           <NavLink href="#contact">Contact</NavLink>

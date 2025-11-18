@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import ServicesSection from '@/components/ServicesSection';
+import InstrumentsSection from '@/components/InstrumentsSection';
 import AboutSection from '@/components/AboutSection';
 import GallerySection from '@/components/GallerySection';
 import TestimonialsSection from '@/components/TestimonialsSection';
@@ -27,6 +28,7 @@ export default function Home() {
       <Header isScrolled={isScrolled} />
       <HeroSection />
       <ServicesSection />
+      <InstrumentsSection />
       <AboutSection />
       <GallerySection />
       <TestimonialsSection />
