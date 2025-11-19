@@ -70,7 +70,28 @@ export default function Footer() {
               <div className="text-gray-400 text-sm">
                 <span className="text-amber-400">Email:</span>
                 <br />
-                contact@larrywind.com
+                <a href="mailto:larrywindmusic@gmail.com" className="hover:text-amber-400 transition-colors">
+                  larrywindmusic@gmail.com
+                </a>
+              </div>
+              <div className="text-gray-400 text-sm">
+                <span className="text-amber-400">Contact:</span>
+                <br />
+                <a href="tel:+2348032858169" className="hover:text-amber-400 transition-colors">
+                  08032858169
+                </a>
+              </div>
+              <div className="text-gray-400 text-sm">
+                <span className="text-amber-400">WhatsApp:</span>
+                <br />
+                <a
+                  href="https://wa.me/2348180911669"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-amber-400 transition-colors"
+                >
+                  08180911669
+                </a>
               </div>
               <div className="text-gray-400 text-sm">
                 <span className="text-amber-400">Location:</span>
