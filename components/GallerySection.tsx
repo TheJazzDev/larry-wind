@@ -317,6 +317,7 @@ export default function GallerySection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
+  const [itemsToShow, setItemsToShow] = useState(9); // Show 9 items initially
 
   const categories = ['All', 'Performance', 'Teaching', 'Sales', 'Videos'];
 
@@ -324,6 +325,19 @@ export default function GallerySection() {
     selectedCategory === 'All'
       ? galleryItems
       : galleryItems.filter((item) => item.category === selectedCategory);
+
+  const displayedItems = filteredItems.slice(0, itemsToShow);
+  const hasMore = itemsToShow < filteredItems.length;
+
+  const loadMore = () => {
+    setItemsToShow((prev) => prev + 9);
+  };
+
+  // Reset items to show when category changes
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    setItemsToShow(9);
+  };
 
   return (
     <section id="gallery" ref={ref} className="py-24 px-6 bg-white/5">
@@ -354,7 +368,7 @@ export default function GallerySection() {
               transition={{ delay: 0.3 + idx * 0.1, duration: 0.3 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => handleCategoryChange(category)}
               className={`px-6 py-2 rounded-lg font-semibold transition-all duration-300 ${
                 selectedCategory === category
                   ? 'bg-amber-500 text-black'
@@ -367,7 +381,7 @@ export default function GallerySection() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredItems.map((item, idx) => (
+          {displayedItems.map((item, idx) => (
             <GalleryCard
               key={item.id}
               {...item}
@@ -377,6 +391,25 @@ export default function GallerySection() {
             />
           ))}
         </div>
+
+        {/* Load More Button */}
+        {hasMore && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="flex justify-center mt-12"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05, boxShadow: '0 20px 60px -15px rgba(245, 158, 11, 0.5)' }}
+              whileTap={{ scale: 0.95 }}
+              onClick={loadMore}
+              className="bg-amber-500 text-black px-8 py-3 rounded-lg font-bold text-lg hover:bg-amber-400 transition-colors duration-300"
+            >
+              Load More ({filteredItems.length - itemsToShow} remaining)
+            </motion.button>
+          </motion.div>
+        )}
 
         {/* Modal for viewing full-size media */}
         {selectedItem && (
@@ -417,6 +450,9 @@ function GalleryCard({
           fill
           className="object-cover group-hover:scale-110 transition-transform duration-500"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          loading={index < 3 ? 'eager' : 'lazy'}
+          priority={index < 3}
+          quality={75}
         />
       ) : (
         <video
@@ -425,6 +461,8 @@ function GalleryCard({
           muted
           loop
           playsInline
+          preload="none"
+          loading="lazy"
         />
       )}
 
@@ -484,6 +522,8 @@ function MediaModal({ item, onClose }: { item: GalleryItem; onClose: () => void 
                 fill
                 className="object-contain"
                 sizes="(max-width: 1200px) 100vw, 1200px"
+                quality={85}
+                priority
               />
             </div>
           ) : (
@@ -492,6 +532,7 @@ function MediaModal({ item, onClose }: { item: GalleryItem; onClose: () => void 
               controls
               autoPlay
               className="w-full max-h-[80vh] object-contain"
+              preload="metadata"
             />
           )}
 
