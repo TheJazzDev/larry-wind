@@ -462,7 +462,6 @@ function GalleryCard({
           loop
           playsInline
           preload="none"
-          loading="lazy"
         />
       )}
 
