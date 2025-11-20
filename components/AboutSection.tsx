@@ -27,12 +27,20 @@ export default function AboutSection() {
               Nigeria. With over 15 years of professional experience, she combines technical
               expertise with inspiring teaching methodology.
             </p>
+            <p className="text-gray-400 text-lg leading-relaxed">
+              She specializes in preparing students for{' '}
+              <span className="text-amber-400 font-semibold">Trinity College London</span> and{' '}
+              <span className="text-amber-400 font-semibold">ABRSM practical examinations</span>,
+              with a proven track record of students achieving outstanding results.
+            </p>
             <ul className="space-y-4">
               <ListItem text="Certified music instructor with advanced degrees" delay={0.2} isInView={isInView} />
               <ListItem text="Performed at major venues and festivals across Nigeria and beyond" delay={0.3} isInView={isInView} />
-              <ListItem text="Personalized lesson plans adapted to each student's goals" delay={0.4} isInView={isInView} />
-              <ListItem text="Patient, encouraging approach that builds confidence" delay={0.5} isInView={isInView} />
-              <ListItem text="Flexible scheduling for working professionals and students" delay={0.6} isInView={isInView} />
+              <ListItem text="Expert preparation for Trinity College London & ABRSM exams" delay={0.4} isInView={isInView} />
+              <ListItem text="Students consistently achieve excellent results in professional exams" delay={0.5} isInView={isInView} />
+              <ListItem text="Personalized lesson plans adapted to each student's goals" delay={0.6} isInView={isInView} />
+              <ListItem text="Patient, encouraging approach that builds confidence" delay={0.7} isInView={isInView} />
+              <ListItem text="Flexible scheduling for working professionals and students" delay={0.8} isInView={isInView} />
             </ul>
           </motion.div>
 

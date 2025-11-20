@@ -121,6 +121,17 @@ export default function Footer() {
           <p className="text-gray-600 text-xs mt-2">
             Crafted with dedication to musical excellence.
           </p>
+          <p className="text-gray-600 text-xs mt-3">
+            Built by{' '}
+            <a
+              href="https://jazzdev.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-amber-400 hover:text-amber-300 transition-colors font-semibold"
+            >
+              JazzDev
+            </a>
+          </p>
         </motion.div>
       </div>
     </footer>
